@@ -4,7 +4,11 @@ import { PiShuffleBold } from 'react-icons/pi';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { HiSpeakerWave } from "react-icons/hi2";
 import { LuHardDriveDownload } from 'react-icons/lu';
+import VoumeController from './VoumeController';
+import { useState } from 'react';
 const Player = () => {
+    const [isVolumeVisible, setIsVolumeVisible] = useState(false);
+
     return (
         <div className="fixed bottom-0 right-0 left-0 bg-[#f5f5f5ff] flex flex-col">
             <input type="range" name="progress" id="progress" min={0} max={100} step={0.1} value={0} className="w-full h-[5px] text-green-400" />
@@ -30,7 +34,12 @@ const Player = () => {
                 {/* 3rd div */}
                 <div className='flex items-center lg:w-[30vw] justify-end gap-2'>
                     <LuHardDriveDownload className='text-gray-700 hover:text-gray-500 text-2xl lg:text-3xl cursor-pointer lg:mr-2' />
-                    <HiSpeakerWave className='text-2xl text-gray-700 hover:text-gray-400 lg:text-3xl cursor-pointer' />
+                    <HiSpeakerWave className='text-2xl text-gray-700 hover:text-gray-400 lg:text-3xl cursor-pointer'
+                        onMouseEnter={() => setIsVolumeVisible(true)
+                        }
+                        onMouseLeave={() => setIsVolumeVisible(false)}
+                    />
+                    <VoumeController isVolumeVisible={isVolumeVisible} />
                 </div>
             </div>
         </div>
