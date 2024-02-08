@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import AlbumItem from "./AlbumItem";
+import Slider from "./Slider";
 
 const MainSection = () => {
     const [albums, setAlbums] = useState([]);
@@ -23,9 +23,12 @@ const MainSection = () => {
         getHomePageData();
     }, []);
 
+    const trendingAlbums = useMemo(() => (Array.isArray(trending.albums) ? trending.albums : []), [trending.albums]);
+
+
     return (
-        <div className="mt-40">
-            {albums?.map((album) => <AlbumItem key={album.id} {...album} />)}
+        <div>
+            <Slider data={trendingAlbums} />
         </div>
     );
 }
