@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Slider from "./Slider";
 
-const MainSection = () => {
+
+const MainSection = ({ Navbar }) => {
     const [albums, setAlbums] = useState([]);
     const [trending, setTrending] = useState([]);
 
@@ -28,7 +29,14 @@ const MainSection = () => {
 
     return (
         <div>
-            <Slider data={trendingAlbums} />
+            <Navbar />
+            <section className="lg:my-28 my-[12rem]">
+                <h2 className="text-xl px-5 py-3 font-semibold text-gray-700 w-full lg:w-[88vw] mx-auto">Trending Now</h2>
+                <Slider data={trendingAlbums} />
+                <h2 className="text-xl px-5 py-3 font-semibold text-gray-700 w-full lg:w-[88vw] mx-auto">Top Albums</h2>
+                <Slider data={albums} />
+            </section>
+
         </div>
     );
 }
