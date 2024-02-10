@@ -6,8 +6,8 @@ import Player from "../components/Player"
 const Home = () => {
     return (
         <>
-            <Navbar />
-            <MainSection />
+            {/* <Navbar /> */}
+            <MainSection Navbar={Navbar} />
             <Player />
         </>
     )

@@ -10,7 +10,7 @@ const Player = () => {
     const [isVolumeVisible, setIsVolumeVisible] = useState(false);
 
     return (
-        <div className="fixed bottom-0 right-0 left-0 bg-[#f5f5f5ff] flex flex-col">
+        <div className="fixed bottom-0 right-0 left-0 bg-green-400 flex flex-col">
             <input type="range" name="progress" id="progress" min={0} max={100} step={0.1} value={0} className="w-full h-[5px] text-green-400" />
             <div className='flex justify-between items-center mb-3 px-3'>
                 {/* 1st div */}

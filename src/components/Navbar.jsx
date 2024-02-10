@@ -5,7 +5,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md'
 const Navbar = () => {
 
     return (
-        <nav className="flex flex-col lg:flex-row justify-between items-center py-3 border-none lg:border px-2 fixed top-0 left-0 right-0 bg-[#f5f5f5ff] z-20">
+        <nav className="flex flex-col lg:flex-row justify-between items-center py-1 border-none lg:border px-2 fixed top-0 left-0 right-0 bg-green-400 z-20 shadow-lg">
             {/* 1st div */}
             <div className="flex flex-col lg:flex-row justify-between items-center mx-auto lg:mx-0">
                 <div className="mr-5">
@@ -24,7 +24,7 @@ const Navbar = () => {
 
             {/* 2nd div */}
 
-            <div className="mt-2">
+            <div className="mt-2 mb-2">
                 <input type="text" name="search" id="search" className="py-2 rounded-xl lg:w-[40vw] outline-none text-center border text-black w-[80vw]" placeholder="search for songs" />
             </div>
 
