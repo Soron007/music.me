@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import MusicContext from "../context/MainContext";
 import Navbar from "../components/Navbar";
 import Player from "../components/Player";
+import SongList from "../components/SongList";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const AlbumDetails = () => {
 
@@ -33,19 +35,26 @@ const AlbumDetails = () => {
         <>
 
             <Navbar />
-
+            <Link to={"/"}><button className="top-52 lg:top-28 left-5 lg:left-10 p-2 shadow-md border rounded-md mt-8 lg:sticky absolute"><IoMdArrowRoundBack /></button></Link>
             <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-24 h-screen my-48 lg:my-0 mx-2 lg:mx-auto">
-                <div className="">
-                    <img src={image} alt={album.title} width={250} className="mx-auto mb-4" />
+
+                <div>
+                    <img src={image} alt={album.title} width={250} className="mx-auto mb-4 rounded-full" />
                     <div className="w-[250px] text-gray-600">
-                        <h1>{album.name}</h1>
-                        <p>By {album.primaryArtist} . {album.songCount}</p>
+                        <h1 className="font-extrabold">{album.name}</h1>
+                        <p className="font-light">By {album.primaryArtists} . {album.songCount} songs</p>
                     </div>
                 </div>
 
 
 
-                <div className="">
+                <div>
+                    {album.songs?.map((song) => (
+
+                        <SongList key={song.id}  {...song} />
+
+
+                    ))}
 
                 </div>
             </div>
