@@ -1,9 +1,40 @@
 import { Link } from "react-router-dom";
 import { MdKeyboardArrowDown } from "react-icons/md";
-
+import axios from "axios";
+import { useContext } from "react";
+import MusicContext from "../context/MainContext";
 
 
 const Navbar = () => {
+
+
+    const { setSearchedSongs } = useContext(MusicContext);
+
+    const searchSongs = async (e) => {
+        const query = e.target.value;
+
+        if (query.trim() === "") {
+            // If the search query is empty, clear the searched songs
+            setSearchedSongs([]);
+            return;
+        }
+
+        try {
+            const res = await axios.get(`https://saavn.dev/search/songs?query=${query}&page=1&limit=2`);
+            const { data } = await res.data;
+
+            if (data.results.length === 0) {
+                setSearchedSongs([]);
+            } else {
+                setSearchedSongs(data.results);
+            }
+
+            console.log(data.results);
+        } catch (error) {
+            // Handle error appropriately (e.g., log or display an error message)
+            console.error("Error in searchSongs:", error);
+        }
+    };
 
 
     return (
@@ -11,8 +42,8 @@ const Navbar = () => {
             {/* 1st div */}
             <div className="flex flex-col lg:flex-row justify-between items-center mx-auto lg:mx-0">
                 <div className="flex justify-between items-center gap-2 mr-4">
-                    {/* <img src="/savan-logo.png" alt="logo" width={37} /> */}
-                    <Link to="/" className="font-extrabold text-lg">
+                    <img src="/logo.png" alt="logo" width={37} />
+                    <Link to="/" className="font-extrabold text-lg lg:text-xl text-pink-600 font-mono">
                         Symphony
                     </Link>
                 </div>
@@ -33,6 +64,7 @@ const Navbar = () => {
                     placeholder="Search for songs"
                     autoComplete="off"
                     autoCorrect="off"
+                    onChange={searchSongs}
 
                 />
             </div>
