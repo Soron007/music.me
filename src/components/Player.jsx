@@ -8,6 +8,7 @@ import { useState, useContext, useEffect, useRef } from "react";
 import VolumeController from "./VolumeController";
 import MusicContext from "../context/MainContext";
 
+
 const Player = () => {
     const [isVolumeVisible, setIsVolumeVisible] = useState(false);
     const { currentSong, playMusic, isPlaying, nextSong, prevSong } =
@@ -93,23 +94,26 @@ const Player = () => {
 
     }
 
+    const handleDownloadSong = async (url) => {
+        try {
+            const res = await fetch(url);
+            const blob = await res.blob();
+            console.log(blob);
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `${currentSong.name}.mp3`;
 
-    //     try {
-    //         const res = await fetch(url);
-    //         const blob = await res.blob();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        catch (error) {
+            console.log("Error Fetching or downloading files", error);
 
-    //         const link = document.createElement("a");
-    //         link.href = URL.createObjectURL(blob);
-    //         link.download = `${currentSong.name}.mp3`;
+        }
+    }
 
-    //         document.body.appendChild(link);
-    //         link.click();
 
-    //         document.body.removeChild(link);
-    //     } catch (error) {
-    //         console.log("Error fetching or downloading files", error);
-    //     }
-    // };
 
     return (
         <div className="fixed bottom-0 right-0 left-0 bg-green-400 flex flex-col">
@@ -189,16 +193,17 @@ const Player = () => {
 
                 <div
                     className="flex lg:w-[30vw] justify-end items-center gap-3"
-                    onMouseEnter={() => setIsVolumeVisible(true)}
-                    onMouseLeave={() => setIsVolumeVisible(false)}
+
                 >
                     <span ref={spanRef} className="text-xl text-orange-800">{currentSong ? convertTime(currentSong?.duration) : null}</span>
 
                     <LuHardDriveDownload
-                        // onClick={() => handleDownloadSong(currentSong.audio.src)}
+                        onClick={() => handleDownloadSong(currentSong?.audio?.src)}
                         className="text-gray-700 hover:text-gray-500 text-2xl lg:text-3xl cursor-pointer lg:mr-2"
                     />
-                    <HiSpeakerWave className="text-gray-700 hover:text-gray-500 text-2xl lg:text-3xl cursor-pointer lg:block" />
+                    <HiSpeakerWave className="text-gray-700 hover:text-gray-500 text-2xl lg:text-3xl cursor-pointer lg:block"
+                        onClick={() => setIsVolumeVisible(!isVolumeVisible)}
+                    />
 
 
                     <VolumeController isVolumeVisible={isVolumeVisible} className="block" />

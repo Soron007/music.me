@@ -38,13 +38,13 @@ const Navbar = () => {
 
 
     return (
-        <nav className="flex justify-between items-center py-3 border-none lg:border px-2 fixed top-0 left-0 right-0 bg-green-400 z-20 shadow-md">
+        <nav className="flex flex-col lg:flex-row justify-between items-center py-3 border-none lg:border px-2 fixed top-0 left-0 right-0 bg-green-400 z-20 shadow-md gap-2">
             {/* 1st div */}
             <div className="flex flex-col lg:flex-row justify-between items-center mx-auto lg:mx-0">
                 <div className="flex justify-between items-center gap-2 mr-4">
-                    <img src="/logo.png" alt="logo" width={37} />
-                    <Link to="/" className="font-extrabold text-lg lg:text-xl text-pink-600 font-mono">
-                        Symphony
+                    <img src="/logo.png" alt="logo" width={42} />
+                    <Link to="/" className="font-extrabold text-xl lg:text-2xl text-pink-600 font-mono">
+                        Music.me
                     </Link>
                 </div>
                 <div className="flex text-[24px] lg:text-[15px] gap-5 text-gray-600 font-semibold h-full">
@@ -55,12 +55,12 @@ const Navbar = () => {
             </div>
 
             {/* 2nd div */}
-            <div className="hidden lg:block">
+            <div className="block">
                 <input
                     type="text"
                     name="search"
                     id="search"
-                    className="py-2 rounded-full w-[40vw] outline-none text-center border text-black"
+                    className="py-2 rounded-full w-[80vw] lg:w-[40vw] outline-none text-center border text-black"
                     placeholder="Search for songs"
                     autoComplete="off"
                     autoCorrect="off"

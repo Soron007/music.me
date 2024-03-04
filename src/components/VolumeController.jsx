@@ -2,24 +2,26 @@ import { useContext, useLayoutEffect, useState } from "react";
 import MusicContext from "../context/MainContext";
 
 
+
 const VolumeController = ({ isVolumeVisible }) => {
+
     const { currentSong } = useContext(MusicContext);
     const [volume, setVolume] = useState(50);
 
     useLayoutEffect(() => {
         if (currentSong) {
             console.log(currentSong.audio.volume);
-            setVolume(currentSong.audio.volume * 100);
+            setVolume(currentSong.audio.volume * 100)
         }
-    }, [currentSong, volume]);
+    }, [currentSong, volume])
 
     const handleVolumeChange = (e) => {
         if (currentSong) {
             const newVolume = parseFloat(e.target.value) / 100;
             currentSong.audio.volume = newVolume;
-            setVolume(newVolume);
+            setVolume(newVolume)
         }
-    };
+    }
 
     return (
         <div

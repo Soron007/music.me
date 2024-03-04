@@ -25,7 +25,12 @@ input[type="range"]::-webkit-slider-thumb {
   width: 10px;
   height: 10px;
   border-radius: 30px;
-  background-color: #46c7b6ff;
+  background-color: green;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  scale: 2;
+  background-color: purple;
 }
 
 .scroll-hide {
